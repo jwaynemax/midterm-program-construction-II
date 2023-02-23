@@ -4,8 +4,9 @@
 package edu.westga.cs6311.model;
 
 /**
+ * Abstract class for Car objects- implements MotorizedVehicle
  * @author justinmaxwell
- *
+ * @version 2/22/23
  */
 abstract class Car implements MotorizedVehicle {
 	private String make;
@@ -16,6 +17,27 @@ abstract class Car implements MotorizedVehicle {
 	private double maximumSpeed;
 	private String direction;
 	private double engineHours;
+	
+	/**
+	 * 0-param constructor
+	 */
+	protected Car() {
+		
+	}
+	
+	/**
+	 * Car Constructor
+	 */
+	protected Car(String make, String model, double weight, String bodyStyle, double currentSpeed, double maximumSpeed, String direction, double engineHours) {
+		this.setMake(make);
+		this.setModel(model);
+		this.setWeight(weight);
+		this.setBodyStyle(bodyStyle);
+		this.setCurrentSpeed(currentSpeed);
+		this.setMaximumSpeed(maximumSpeed);
+		this.setDirection(direction);
+		this.setEngineHours(engineHours);
+	}
 	
 	/**
 	 * get model
