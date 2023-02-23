@@ -29,7 +29,7 @@ public class ModelY extends Car {
 	@Override
 	public String drive() {
 		this.accelerate();
-		if (super.getCurrentSpeed() > 85) {
+		if (super.getCurrentSpeed() > 85.0) {
 			super.setEngineHours(super.getEngineHours() + 2);
 		} else {
 			super.setEngineHours(super.getEngineHours() + 1);
@@ -43,10 +43,10 @@ public class ModelY extends Car {
 		
 		if (acceleration > 5 && super.getCurrentSpeed() < (.20 * super.getMaximumSpeed())) {
 			super.setEngineHours(super.getEngineHours() + 2);
-		}
-		
-		if (acceleration > 2 && super.getCurrentSpeed() > (.60 * super.getMaximumSpeed())) {
+		} else if (acceleration > 2 && super.getCurrentSpeed() > (.60 * super.getMaximumSpeed())) {
 			super.setEngineHours(super.getEngineHours() + 3);
+		} else {
+			super.setEngineHours(super.getEngineHours() + 1);
 		}
 		
 		return "Car's Current Speed: " + super.getCurrentSpeed() + ", Car's Current Direction " + super.getDirection();
