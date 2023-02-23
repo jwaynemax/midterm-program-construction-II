@@ -8,7 +8,7 @@ package edu.westga.cs6311.model;
  * @author justinmaxwell
  * @version 2/22/23
  */
-abstract class Car implements MotorizedVehicle {
+public abstract class Car implements MotorizedVehicle {
 	private String make;
 	private String model;
 	private double weight;
@@ -168,7 +168,7 @@ abstract class Car implements MotorizedVehicle {
 			throw new IllegalArgumentException("direction can not be null, empty, or only whitespace.");
 		}
 		
-		if (!direction.equals("North") || !direction.equals("South") || !direction.equals("East") || !direction.equals("West")) {
+		if (!direction.equals("North") && !direction.equals("South") && !direction.equals("East") && !direction.equals("West")) {
 			throw new IllegalArgumentException("direction must equal North, South, East, or West.");
 		}
 		this.direction = direction;
