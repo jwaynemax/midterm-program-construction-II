@@ -3,6 +3,8 @@
  */
 package edu.westga.cs6311.model;
 
+import java.util.HashMap;
+
 /**
  * Abstract class for Plane objects - implements MotorizedVehicle
  * @author justinmaxwell
@@ -153,7 +155,7 @@ public abstract class Plane implements MotorizedVehicle {
 	 */
 	public void setMaximumSpeed(double maximumSpeed) {
 		if (maximumSpeed < 0 || maximumSpeed > 150) {
-			throw new IllegalArgumentException("maximumSpeed can not be negative or greater than 150.");
+			throw new IllegalArgumentException(this.getErrorCode("001"));
 		}
 		this.maximumSpeed = maximumSpeed;
 	}
@@ -176,7 +178,7 @@ public abstract class Plane implements MotorizedVehicle {
 		}
 		
 		if (!direction.equals("North") && !direction.equals("South") && !direction.equals("East") && !direction.equals("West")) {
-			throw new IllegalArgumentException("direction must equal North, South, East, or West.");
+			throw new IllegalArgumentException(this.getErrorCode("002"));
 		}
 		this.direction = direction;
 	}
@@ -195,7 +197,7 @@ public abstract class Plane implements MotorizedVehicle {
 	 */
 	public void setEngineHours(double engineHours) {
 		if (engineHours < this.getEngineHours()) {
-			throw new IllegalArgumentException("engineHours can not be decremented");
+			throw new IllegalArgumentException(this.getErrorCode("003"));
 		}
 		if (engineHours < 0) {
 			throw new IllegalArgumentException("engineHours can not be negative");
@@ -243,5 +245,20 @@ public abstract class Plane implements MotorizedVehicle {
 		this.accelerate();
 		this.setEngineHours(this.engineHours + 1);
 		return "Plane's Current Speed: " + this.getCurrentSpeed() + ", Plane's Current Direction " + this.getDirection();
+	}
+	
+	/**
+	 * Error Codes thrown when conditions are not met
+	 * @param errorKey
+	 * @return errorKey to code
+	 */
+	public String getErrorCode(String errorKey) {
+		HashMap<String, String> errorCodes = new HashMap<String, String>();
+		
+		errorCodes.put("001", "maximumSpeed can not be negative or greater than 150.");
+		errorCodes.put("002", "direction must equal North, South, East, or West.");
+		errorCodes.put("003", "engineHours can not be decremented");
+		
+		return errorCodes.get(errorKey);
 	}
 }
