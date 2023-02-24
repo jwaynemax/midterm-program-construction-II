@@ -31,13 +31,17 @@ public class Boeing737 extends Plane {
 	 */
 	@Override
 	public String fly() {
-		this.accelerate();
-		if (super.getPassengerCapacity() > (.65 * super.getTotalPassangerCapacity())) {
-			super.setEngineHours(super.getEngineHours() + 3);
+		if (super.getPassengerCapacity() > super.getTotalPassangerCapacity()) {
+			return super.getErrorCode("004");
 		} else {
-			super.setEngineHours(super.getEngineHours() + 1);
+			this.accelerate();
+			if (super.getPassengerCapacity() > (.65 * super.getTotalPassangerCapacity())) {
+				super.setEngineHours(super.getEngineHours() + 3);
+			} else {
+				super.setEngineHours(super.getEngineHours() + 1);
+			}
+			return "Plane's Current Speed: " + super.getCurrentSpeed() + ", Plane's Current Direction " + super.getDirection();	
 		}
-		return "Plane's Current Speed: " + super.getCurrentSpeed() + ", Plane's Current Direction " + super.getDirection();	
 	}
 	
 	/**
