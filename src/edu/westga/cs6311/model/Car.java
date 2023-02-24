@@ -193,7 +193,6 @@ public abstract class Car implements MotorizedVehicle {
 			throw new IllegalArgumentException(this.getErrorCode("003"));
 		}
 		if (engineHours < 0) {
-			this.getErrorCode("003");
 			throw new IllegalArgumentException("engineHours can not be negative");
 		}
 		this.engineHours = engineHours;
