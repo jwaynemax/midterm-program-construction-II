@@ -5,6 +5,8 @@ package edu.westga.cs6311.test;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -75,6 +77,63 @@ class TestModelY {
 	void testServiceRequired() {
 		this.modely.setEngineHours(9000);
 		assertEquals(true, this.modely.serviceRequired(), "Testing Model Y Service Required");
+	}
+	
+	@Test
+	void testErrorSetMake() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.modely.setMake(null);
+		});
+	}
+	
+	@Test
+	void testErrorSetModel() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.modely.setModel(" ");
+		});
+	}
+	
+	@Test
+	void testErrorSetWeight() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.modely.setWeight(-1);
+		});
+	}
+	
+	@Test
+	void testErrorSetBodyStyle() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.modely.setBodyStyle("");
+		});
+	}
+	
+	@Test
+	void testErrorSetCurrentSpeed() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.modely.setCurrentSpeed(-1);
+		});
+	}
+	
+	@Test
+	void testErrorSetMaxSpeed() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.modely.setMaximumSpeed(170);
+		});
+	}
+	
+	@Test
+	void testErrorSetDirection() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.modely.setDirection("southeast");
+		});
+	}
+	
+	@Test
+	void testErrorSetEngineHours() {
+		this.modely.setEngineHours(3);
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.modely.setEngineHours(1);
+		});
 	}
 
 }
