@@ -4,15 +4,15 @@
 package edu.westga.cs6311.model;
 
 /**
- * Abstract class for Car objects - implements MotorizedVehicle
+ * Abstract class for Boat objects - implements MotorizedVehicle
  * @author justinmaxwell
  * @version 2/22/23
  */
-public abstract class Car implements MotorizedVehicle {
+public abstract class Boat implements MotorizedVehicle {
 	private String make;
 	private String model;
-	private double weight;
-	private String bodyStyle;
+	private int currentCapacity;
+	private int totalCapacity;
 	private double currentSpeed;
 	private double maximumSpeed;
 	private String direction;
@@ -21,18 +21,18 @@ public abstract class Car implements MotorizedVehicle {
 	/**
 	 * 0-param constructor
 	 */
-	protected Car() {
+	protected Boat() {
 		
 	}
 	
 	/**
-	 * Car Constructor
+	 * Boat Constructor
 	 */
-	protected Car(String make, String model, double weight, String bodyStyle, double currentSpeed, double maximumSpeed, String direction, double engineHours) {
+	protected Boat(String make, String model, int currentCapacity, int totalCapacity, double currentSpeed, double maximumSpeed, String direction, double engineHours) {
 		this.setMake(make);
 		this.setModel(model);
-		this.setWeight(weight);
-		this.setBodyStyle(bodyStyle);
+		this.setCurrentCapacity(currentCapacity);
+		this.setTotalCapacity(totalCapacity);
 		this.setCurrentSpeed(currentSpeed);
 		this.setMaximumSpeed(maximumSpeed);
 		this.setDirection(direction);
@@ -78,39 +78,45 @@ public abstract class Car implements MotorizedVehicle {
 	}
 	
 	/**
-	 * get weight
+	 * get currentCapacity
 	 * @return the weight
 	 */
-	public double getWeight() {
-		return this.weight;
+	public int getCurrentCapacity() {
+		return this.currentCapacity;
 	}
 	/**
-	 * set weight
-	 * @param weight the weight to set
+	 * set currentCapacity
+	 * @param currentCapacity the currentCapacity to set
 	 */
-	public void setWeight(double weight) {
-		if (weight < 0) {
-			throw new IllegalArgumentException("weight can not be negative.");
+	public void setCurrentCapacity(int currentCapacity) {
+		if (currentCapacity < 0) {
+			throw new IllegalArgumentException("currentCapacity can not be negative.");
 		}
-		this.weight = weight;
+		
+		if (currentCapacity > this.getTotalCapacity()) {
+			throw new IllegalArgumentException("currentCapacity can not exceed total capacity.");
+		}
+		this.currentCapacity = currentCapacity;
 	}
 	
 	/**
-	 * get bodyStyle
-	 * @return the bodyStyle
+	 * get totalCapacity
+	 * @return the totalCapacity
 	 */
-	public String getBodyStyle() {
-		return this.bodyStyle;
+	public int getTotalCapacity() {
+		return this.totalCapacity;
 	}
+	
 	/**
-	 * set bodyStyle
-	 * @param bodyStyle the bodyStyle to set
+	 * set totalCapacity
+	 * @param totalCapacity the totalCapacity to set
 	 */
-	public void setBodyStyle(String bodyStyle) {
-		if (bodyStyle == null || bodyStyle.equals("") || bodyStyle.equals(" ")) {
-			throw new IllegalArgumentException("bodyStyle can not be null, empty, or only whitespace.");
+	public void setTotalCapacity(int totalCapacity) {
+		if (totalCapacity < 0) {
+			throw new IllegalArgumentException("totalCapacity can not be negative.");
 		}
-		this.bodyStyle = bodyStyle;
+		
+		this.totalCapacity = totalCapacity;
 	}
 	
 	/**
@@ -232,9 +238,10 @@ public abstract class Car implements MotorizedVehicle {
 	 * Accelerate car, set engine hours to current engine hours +1
 	 * @return string w/ current speed and current direction
 	 */
-	public String drive() {
+	public String sail() {
 		this.accelerate();
 		this.setEngineHours(this.engineHours + 1);
-		return "Car's Current Speed: " + this.getCurrentSpeed() + ", Car's Current Direction " + this.getDirection();
+		return "Boat's Current Speed: " + this.getCurrentSpeed() + ", Boat's Current Direction " + this.getDirection();
 	}
+	
 }
