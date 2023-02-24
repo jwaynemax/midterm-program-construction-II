@@ -2,6 +2,8 @@ package edu.westga.cs6311.test;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -64,5 +66,19 @@ class TestBoeing737 {
 	void testServiceRequired() {
 		this.boeing737.setEngineHours(501);
 		assertEquals(true, this.boeing737.serviceRequired(), "Testing boeing737 Service Required");
+	}
+	
+	@Test
+	void testErrorSetPassengerCapacity() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.boeing737.setPassengerCapacity(201);
+		});
+	}
+	
+	@Test
+	void testErrorSetTotalPassengerCapacity() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.boeing737.setTotalPassengerCapacity(-1);
+		});
 	}
 }
