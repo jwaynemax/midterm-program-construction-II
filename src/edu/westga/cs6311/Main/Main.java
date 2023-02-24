@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 		ModelY modelY = new ModelY();
 				
-		System.out.println(modelY.getErrorCode("001"));
+		System.out.println(modelY.drive(3, "South"));
 	}
 
 }

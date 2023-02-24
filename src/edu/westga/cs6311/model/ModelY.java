@@ -47,18 +47,23 @@ public class ModelY extends Car {
 	 * @return speed and direction
 	 */
 	public String drive(double acceleration, String direction) {
-		super.setDirection(direction);
-		super.setCurrentSpeed(super.getCurrentSpeed() + acceleration);
-		
-		if (acceleration > 5 && super.getCurrentSpeed() < (.20 * super.getMaximumSpeed())) {
-			super.setEngineHours(super.getEngineHours() + 2);
-		} else if (acceleration > 2 && super.getCurrentSpeed() > (.60 * super.getMaximumSpeed())) {
-			super.setEngineHours(super.getEngineHours() + 3);
+		if (!direction.equals("North") && !direction.equals("South") && !direction.equals("East") && !direction.equals("West")) {
+			return super.getErrorCode("004");
 		} else {
-			super.setEngineHours(super.getEngineHours() + 1);
+			super.setDirection(direction);
+			super.setCurrentSpeed(super.getCurrentSpeed() + acceleration);
+			
+			if (acceleration > 5 && super.getCurrentSpeed() < (.20 * super.getMaximumSpeed())) {
+				super.setEngineHours(super.getEngineHours() + 2);
+			} else if (acceleration > 2 && super.getCurrentSpeed() > (.60 * super.getMaximumSpeed())) {
+				super.setEngineHours(super.getEngineHours() + 3);
+			} else {
+				super.setEngineHours(super.getEngineHours() + 1);
+			}
+			
+			return "Car's Current Speed: " + super.getCurrentSpeed() + ", Car's Current Direction " + super.getDirection();
 		}
 		
-		return "Car's Current Speed: " + super.getCurrentSpeed() + ", Car's Current Direction " + super.getDirection();
 	}
 	
 	/**

@@ -251,6 +251,7 @@ public abstract class Car implements MotorizedVehicle {
 		errorCodes.put("001", "maximumSpeed can not be negative or greater than 150.");
 		errorCodes.put("002", "direction must equal North, South, East, or West.");
 		errorCodes.put("003", "engineHours can not be decremented");
+		errorCodes.put("004", "Cannot travel this direction. Can only travel - North, South, East, or West.");
 		
 		return errorCodes.get(errorKey);
 	}
