@@ -2,6 +2,8 @@ package edu.westga.cs6311.test;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -63,5 +65,19 @@ class TestR35 {
 	void testServiceRequired() {
 		this.r35.setEngineHours(4033);
 		assertEquals(true, this.r35.serviceRequired(), "Testing R35 Service Required");
+	}
+	
+	@Test
+	void testErrorSetCurrentCapacity() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.r35.setCurrentCapacity(11);
+		});
+	}
+	
+	@Test
+	void testErrorSetTotalCapacity() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			this.r35.setTotalCapacity(-1);
+		});
 	}
 }
