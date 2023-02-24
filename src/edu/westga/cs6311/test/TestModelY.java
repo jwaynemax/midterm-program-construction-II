@@ -135,5 +135,4 @@ class TestModelY {
 			this.modely.setEngineHours(1);
 		});
 	}
-
 }
