@@ -13,7 +13,7 @@ public class R35 extends Boat {
 	/**
 	 * Constructor
 	 */
-	protected R35() {
+	public R35() {
 		super.setMake("Cobalt");
 		super.setModel("R35");
 		super.setCurrentCapacity(0);
@@ -46,7 +46,7 @@ public class R35 extends Boat {
 	 * @param direction
 	 * @return speed and direction
 	 */
-	public String drive(double acceleration, String direction) {
+	public String sail(double acceleration, String direction) {
 		super.setDirection(direction);
 		super.setCurrentSpeed(super.getCurrentSpeed() + acceleration);
 		
