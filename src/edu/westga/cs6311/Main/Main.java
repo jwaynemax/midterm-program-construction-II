@@ -11,8 +11,10 @@ public class Main {
 		ModelY modelY = new ModelY();
 		Boeing737 plane = new Boeing737();
 		R35 boat = new R35();
-				
-		System.out.println(boat.sail(2, "North"));
+		
+		plane.setEngineHours(5000);
+		
+		System.out.println(plane.fly());
 	}
 
 }

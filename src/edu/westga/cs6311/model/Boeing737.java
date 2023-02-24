@@ -31,7 +31,7 @@ public class Boeing737 extends Plane {
 	 */
 	@Override
 	public String fly() {
-		if (super.getPassengerCapacity() > super.getTotalPassangerCapacity()) {
+		if (this.serviceRequired() == true) {
 			return super.getErrorCode("004");
 		} else {
 			this.accelerate();
