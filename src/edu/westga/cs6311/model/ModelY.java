@@ -10,6 +10,9 @@ package edu.westga.cs6311.model;
  */
 public class ModelY extends Car {
 	
+	/**
+	 * Constructor
+	 */
 	public ModelY() {
 		super.setMake("Tesla");
 		super.setModel("Model Y");
@@ -37,6 +40,12 @@ public class ModelY extends Car {
 		return "Car's Current Speed: " + super.getCurrentSpeed() + ", Car's Current Direction " + super.getDirection();	
 	}
 	
+	/**
+	 * Overload drive to accept acceleration and direction
+	 * @param acceleration
+	 * @param direction
+	 * @return speed and direction
+	 */
 	public String drive(double acceleration, String direction) {
 		super.setDirection(direction);
 		super.setCurrentSpeed(super.getCurrentSpeed() + acceleration);
