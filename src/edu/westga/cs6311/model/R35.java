@@ -47,18 +47,23 @@ public class R35 extends Boat {
 	 * @return speed and direction
 	 */
 	public String sail(double acceleration, String direction) {
-		super.setDirection(direction);
-		super.setCurrentSpeed(super.getCurrentSpeed() + acceleration);
 		
-		if (acceleration > 3 && super.getCurrentSpeed() < (.20 * super.getMaximumSpeed()) && super.getCurrentCapacity() < (.35 * super.getTotalCapacity())) {
-			super.setEngineHours(super.getEngineHours() + 2);
-		} else if (acceleration > 1 && super.getCurrentSpeed() > (.60 * super.getMaximumSpeed()) || super.getCurrentCapacity() > (.90 * super.getTotalCapacity())) {
-			super.setEngineHours(super.getEngineHours() + 3);
+		if (super.getCurrentSpeed() + acceleration > super.getMaximumSpeed()) {
+			return super.getErrorCode("004");
 		} else {
-			super.setEngineHours(super.getEngineHours() + 1);
+			super.setDirection(direction);
+			super.setCurrentSpeed(super.getCurrentSpeed() + acceleration);
+			
+			if (acceleration > 3 && super.getCurrentSpeed() < (.20 * super.getMaximumSpeed()) && super.getCurrentCapacity() < (.35 * super.getTotalCapacity())) {
+				super.setEngineHours(super.getEngineHours() + 2);
+			} else if (acceleration > 1 && super.getCurrentSpeed() > (.60 * super.getMaximumSpeed()) || super.getCurrentCapacity() > (.90 * super.getTotalCapacity())) {
+				super.setEngineHours(super.getEngineHours() + 3);
+			} else {
+				super.setEngineHours(super.getEngineHours() + 1);
+			}
+			
+			return "Boat's Current Speed: " + super.getCurrentSpeed() + ", Boat's Current Direction " + super.getDirection();
 		}
-		
-		return "Boat's Current Speed: " + super.getCurrentSpeed() + ", Boat's Current Direction " + super.getDirection();
 	}
 	
 	/**
