@@ -4,15 +4,16 @@
 package edu.westga.cs6311.model;
 
 /**
- * Abstract class for Boat objects - implements MotorizedVehicle
+ * Abstract class for Plane objects - implements MotorizedVehicle
  * @author justinmaxwell
  * @version 2/22/23
  */
-public abstract class Boat implements MotorizedVehicle {
+public abstract class Plane implements MotorizedVehicle {
+	
 	private String make;
 	private String model;
-	private int currentCapacity;
-	private int totalCapacity;
+	private int passengerCapacity;
+	private int totalPassengerCapacity;
 	private double currentSpeed;
 	private double maximumSpeed;
 	private String direction;
@@ -21,18 +22,18 @@ public abstract class Boat implements MotorizedVehicle {
 	/**
 	 * 0-param constructor
 	 */
-	protected Boat() {
+	protected Plane() {
 		
 	}
 	
 	/**
-	 * Boat Constructor
+	 * Plane Constructor
 	 */
-	protected Boat(String make, String model, int currentCapacity, int totalCapacity, double currentSpeed, double maximumSpeed, String direction, double engineHours) {
+	protected Plane(String make, String model, int passengerCapacity, int totalPassengerCapacity, double currentSpeed, double maximumSpeed, String direction, double engineHours) {
 		this.setMake(make);
 		this.setModel(model);
-		this.setCurrentCapacity(currentCapacity);
-		this.setTotalCapacity(totalCapacity);
+		this.setPassengerCapacity(passengerCapacity);
+		this.setTotalPassengerCapacity(totalPassengerCapacity);
 		this.setCurrentSpeed(currentSpeed);
 		this.setMaximumSpeed(maximumSpeed);
 		this.setDirection(direction);
@@ -78,45 +79,45 @@ public abstract class Boat implements MotorizedVehicle {
 	}
 	
 	/**
-	 * get currentCapacity
+	 * get passengerCapacity
 	 * @return the weight
 	 */
-	public int getCurrentCapacity() {
-		return this.currentCapacity;
+	public int getPassengerCapacity() {
+		return this.passengerCapacity;
 	}
 	/**
-	 * set currentCapacity
-	 * @param currentCapacity the currentCapacity to set
+	 * set passengerCapacity
+	 * @param passengerCapacity the passengerCapacity to set
 	 */
-	public void setCurrentCapacity(int currentCapacity) {
-		if (currentCapacity < 0) {
-			throw new IllegalArgumentException("currentCapacity can not be negative.");
+	public void setPassengerCapacity(int passengerCapacity) {
+		if (passengerCapacity < 0) {
+			throw new IllegalArgumentException("passengerCapacity can not be negative.");
 		}
 		
-		if (currentCapacity > this.getTotalCapacity()) {
-			throw new IllegalArgumentException("currentCapacity can not exceed total capacity.");
+		if (passengerCapacity > this.getTotalPassangerCapacity()) {
+			throw new IllegalArgumentException("passengerCapacity can not exceed total capacity.");
 		}
-		this.currentCapacity = currentCapacity;
+		this.passengerCapacity = passengerCapacity;
 	}
 	
 	/**
-	 * get totalCapacity
-	 * @return the totalCapacity
+	 * get TotalPassangerCapacity
+	 * @return the TotalPassangerCapacity
 	 */
-	public int getTotalCapacity() {
-		return this.totalCapacity;
+	public int getTotalPassangerCapacity() {
+		return this.totalPassengerCapacity;
 	}
 	
 	/**
-	 * set totalCapacity
-	 * @param totalCapacity the totalCapacity to set
+	 * set totalPassengerCapacity
+	 * @param totalPassengerCapacity the totalPassengerCapacity to set
 	 */
-	public void setTotalCapacity(int totalCapacity) {
-		if (totalCapacity < 0) {
-			throw new IllegalArgumentException("totalCapacity can not be negative.");
+	public void setTotalPassengerCapacity(int totalPassengerCapacity) {
+		if (totalPassengerCapacity < 0) {
+			throw new IllegalArgumentException("totalPassengerCapacity can not be negative.");
 		}
 		
-		this.totalCapacity = totalCapacity;
+		this.totalPassengerCapacity = totalPassengerCapacity;
 	}
 	
 	/**
@@ -235,13 +236,12 @@ public abstract class Boat implements MotorizedVehicle {
 	}
 	
 	/**
-	 * Accelerate boat, set engine hours to current engine hours +1
+	 * Accelerate plane, set engine hours to current engine hours +1
 	 * @return string w/ current speed and current direction
 	 */
-	public String sail() {
+	public String fly() {
 		this.accelerate();
 		this.setEngineHours(this.engineHours + 1);
-		return "Boat's Current Speed: " + this.getCurrentSpeed() + ", Boat's Current Direction " + this.getDirection();
+		return "Plane's Current Speed: " + this.getCurrentSpeed() + ", Plane's Current Direction " + this.getDirection();
 	}
-	
 }
